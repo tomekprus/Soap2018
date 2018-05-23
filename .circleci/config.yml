@@ -1,0 +1,33 @@
+version: 2
+jobs:
+  build:
+    docker:
+      # specify the version you desire here
+      - image: circleci/ruby:2.4.1-node-browsers
+
+    steps:
+      - checkout
+
+      - run:
+          name: install dependencies
+          command: |
+            gem install awesome_bot
+      - run:
+          name: run links tests
+          command: |
+            awesome_bot -f README.md--base-url https://github.com/tomekprus/Soap2018blob/$CIRCLE_BRANCH/
+workflows:
+   version: 2
+   commit:
+     jobs:
+       - build
+   nightly:
+     triggers:
+       - schedule:
+           cron: "0 0 * * *"
+           filters:
+             branches:
+               only:
+                 - master
+     jobs:
+       - build
