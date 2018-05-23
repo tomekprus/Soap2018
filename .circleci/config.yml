@@ -15,7 +15,7 @@ jobs:
       - run:
           name: run links tests
           command: |
-            awesome_bot -f README.md--base-url https://github.com/tomekprus/Soap2018blob/$CIRCLE_BRANCH/
+            awesome_bot -f README.md--base-url https://github.com/tomekprus/Soap2018/blob/$CIRCLE_BRANCH/
 workflows:
    version: 2
    commit:
